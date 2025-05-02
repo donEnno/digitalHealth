@@ -51,17 +51,35 @@ class Net(nn.Module):
     
 
 def calculate_metrics(y_true, y_pred):
+    """
+    Calculate accuracy, sensitivity, specificity, and confusion matrix.
+    Args:
+        y_true (np.ndarray): True labels.
+        y_pred (np.ndarray): Predicted labels.
+    Returns:
+        accuracy (float): Accuracy of the model.
+        sensitivity (float): Sensitivity (True Positive Rate).
+        specificity (float): Specificity (True Negative Rate).
+        cm (np.ndarray): Confusion matrix.
+    """
+
     cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
     tn, fp, fn, tp = cm.ravel()
 
     accuracy = (tp + tn) / (tp + tn + fp + fn)
-    sensitivity = tp / (tp + fn)  # Recall for class 1
-    specificity = tn / (tn + fp)  # Recall for class 0
+    sensitivity = tp / (tp + fn)  
+    specificity = tn / (tn + fp)  
     
     return accuracy, sensitivity, specificity, cm
 
 
 def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blues):
+    """
+    This function plots the confusion matrix.
+    """
+
+    plt.figure(figsize=(8, 6))
+
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
     plt.colorbar()
@@ -80,6 +98,8 @@ def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blu
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.tight_layout()
+
+    plt.show()
     
 
 # -------------------------------------------------------------------------------------# Load and preprocess the dataset
@@ -160,7 +180,5 @@ print(f'Sensitivity: {sensitivity:.4f}')
 print(f'Specificity: {specificity:.4f}')
 print('Plotting confusion matrix')
 
-plt.figure(figsize=(8, 6))
 classes = trainset.classes
 plot_confusion_matrix(cm, classes, title='Confusion Matrix')
-plt.show()
