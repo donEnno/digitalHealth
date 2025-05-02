@@ -40,7 +40,7 @@ def extract_and_store_slice(nifti_file: str, slice_index: int, output_file: str 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Load and process NIfTI files.')
+    parser = argparse.ArgumentParser(description='Load and and store a slice of a NIfTI file.')
     parser.add_argument('-f', '--file', type=str, default=DEFAULT_NIFTI_FILE, help='Path to the NIfTI file.')
     parser.add_argument('-s', '--slice', type=int, default=DEFAULT_SLICE_INDEX, help='Slice index to process.')
     parser.add_argument('-o', '--output', type=str, default=DEFAULT_OUTPUT_FILE, help='Output PNG file name.')
