@@ -7,9 +7,9 @@ import nibabel as nib
 import matplotlib.pyplot as plt
 
 # Constants/defaults
-DEFAULT_NIFTI_FILE = 'data/BraTS20_Validation_002_flair.nii'
+DEFAULT_NIFTI_FILE = 'technical_task/subtask_1/BraTS20_Validation_002_flair.nii'
 DEFAULT_SLICE_INDEX = 99
-DEFAULT_OUTPUT_FILE = 'flair.png'
+DEFAULT_OUTPUT_FILE = './flair.png'
 
 
 def extract_and_store_slice(nifti_file: str, slice_index: int, output_file: str = DEFAULT_OUTPUT_FILE) -> None:
