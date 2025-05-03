@@ -73,14 +73,14 @@ def calculate_metrics(y_true, y_pred):
     return accuracy, sensitivity, specificity, cm
 
 
-def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blues):
+def plot_confusion_matrix(cm, classes, title='Confusion Matrix', save=True):
     """
     This function plots the confusion matrix.
     """
 
     plt.figure(figsize=(8, 6))
 
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.imshow(cm, interpolation='nearest',  cmap=plt.cm.Blues)
     plt.title(title)
     plt.colorbar()
     tick_marks = np.arange(len(classes))
@@ -99,6 +99,9 @@ def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blu
     plt.xlabel('Predicted label')
     plt.tight_layout()
 
+    if save:
+        plt.savefig('confusion_matrix.png', dpi=300)
+        
     plt.show()
     
 
